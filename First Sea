@@ -1,0 +1,122 @@
+local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
+local win = DiscordLib:Window("Test Hub")
+local serv = win:Server("ConDL Piece", "https://www.roblox.com/headshot-thumbnail/image?userId="..game.Players.LocalPlayer.UserId.."&width=1000&height=1000&format=png")
+local drops = serv:Channel("Mob")
+local moblist = {}
+local mob = nil
+for i, v in pairs(game:GetService("Workspace").Monster:GetChildren()) do
+if v.Name ~= "Boss" then
+table.insert(moblist,v.Name)
+end
+end
+local drop = drops:Dropdown("Pick me!", moblist, function(a)
+mob = a
+end)
+drops:Toggle("Auto Bring Mob",false, function(a)
+local b = nil
+getgenv().fast = a
+function mk()
+if getgenv().fast then
+if mob == "Boss" then
+game.Workspace.Monster[mob]["Moi Boss"].HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-4)
+else
+for i, v in pairs(game.Workspace.Monster[mob]:GetChildren()) do
+v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-4)
+end
+end
+end
+end
+game.RunService.RenderStepped:Connect(mk)
+end)
+drops:Button("Tele Mob",function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Monster[mob][mob].HumanoidRootPart.CFrame
+end)
+local drops = serv:Channel("Boss")
+local moblist = {}
+local mob2 = nil
+for i, v in pairs(game:GetService("Workspace").Monster.Boss:GetChildren()) do
+table.insert(moblist,v.Name)
+end
+local drop = drops:Dropdown("Pick me!", moblist, function(a)
+mob2 = a
+end)
+drops:Toggle("Auto Bring Boss",false, function(a)
+local b = nil
+getgenv().boss = a
+function mk()
+if getgenv().boss then
+game.Workspace.Monster.Boss[mob2].HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-4)
+end
+end
+game.RunService.RenderStepped:Connect(mk)
+end)
+drops:Button("Tele Boss",function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Monster.Boss[mob2].HumanoidRootPart.CFrame
+end)
+local drops = serv:Channel("Weapon")
+  local Weaponlist = {}  
+  local Weapon = nil  
+  for i, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
+  if v:IsA("Tool") then  
+          table.insert(Weaponlist,v.Name)  
+  end  
+  end  
+  local drop = drops:Dropdown("Pick", Weaponlist, function(m)  
+  for i, k in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
+  if m == k.Name then  
+          Weapon = m  
+  if Weapon then  
+  game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Weapon))  
+  end  
+  end  
+  end  
+  end)  
+  drops:Button("Refresh Weapon", function()  
+  drop:Clear()  
+  for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
+  if v:IsA("Tool") then  
+  drop:Add(v.Name)  
+  end  
+  end  
+  end)  
+  drops:Toggle("Auto Equip",false, function(a) 
+ if Weapon == nil then 
+ DiscordLib:Notification("Warning", "Choose Weapon to AutoEquip", "Ok") 
+ elseif Weapon ~= nil then 
+          AutoEquiped = a  
+ end 
+  end)  
+  spawn(function()  
+          while wait() do  
+                  if AutoEquiped then  
+                          pcall(function()  
+                                  game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Weapon))  
+                          end)  
+                  end  
+          end  
+  end)  
+
+drops:Toggle("Auto Attack And Auto Skill",false,function(a)
+getgenv().fas = a
+while fas do wait()
+pcall(function()
+for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+if v:IsA("RemoteEvent") and v.Name == "Fire" then
+v:FireServer()
+end
+end
+end)
+end
+end)
+local drops = serv:Channel("IsLand")
+local islandlist = {}  
+  local island = nil  
+  for i, v in pairs(game:GetService("Workspace").Island:GetChildren()) do  
+  table.insert(islandlist,v.Name)  
+  end  
+  local drop = drops:Dropdown("Pick", islandlist, function(m)  
+  island = m
+end)
+drops:Button("Teleport Island",function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Island[island].WorldPivot*CFrame.new(-85.100000,3,0)
+end)
