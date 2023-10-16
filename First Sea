@@ -1,6 +1,7 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/MiniNoobie/ShiftLockx/main/Shiftlock-MiniNoobie",true))()     
 local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
-local win = DiscordLib:Window("Test Hub"local per = game.Players.LocalPlayer.Name
+local win = DiscordLib:Window("Test Hub")
+local per = game.Players.LocalPlayer.Name
  DiscordLib:Notification("Test Hub","Hello! "..""..per..".                                              ".."Thanks For Using Test Hub","Ok") 
 local serv = win:Server("ConDL Piece", "https://www.roblox.com/headshot-thumbnail/image?userId="..game.Players.LocalPlayer.UserId.."&width=1000&height=1000&format=png")
 local drops = serv:Channel("Mob")
