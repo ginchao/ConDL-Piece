@@ -55,6 +55,20 @@ end)
 drops:Button("Tele Boss",function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Monster.Boss[mob2].HumanoidRootPart.CFrame
 end)
+drops:Toggle("Auto Bring All Boss",false, function(boss)
+getgenv().bossw = boss
+local bs = nil
+function boss()
+if getgenv().bossw then
+for i, v in pairs(game.Workspace.Monster.Boss:GetChildren()) do
+if v.Name ~= "Realistic chicken" then
+v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-2)
+end
+end
+end
+end
+bs = game.RunService.RenderStepped:Connect(boss)
+end)
 local drops = serv:Channel("Weapon")
   local Weaponlist = {}  
   local Weapon = nil  
