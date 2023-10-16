@@ -63,7 +63,7 @@ function boss()
 if getgenv().bossw then
 for i, v in pairs(game.Workspace.Monster.Boss:GetChildren()) do
 if v.Name ~= "Realistic chicken" then
-v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-2)
+v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-4)
 end
 end
 end
@@ -393,7 +393,7 @@ local islandlist = {}
   for i, v in pairs(game:GetService("Workspace").Island:GetChildren()) do  
   table.insert(islandlist,v.Name)  
   end  
-  local drop = drops:Dropdown("Pick", islandlist, function(m)  
+  local drop = drops:Dropdown("Island", islandlist, function(m)  
   island = m
 end)
 drops:Button("Teleport Island",function()
@@ -404,10 +404,10 @@ local npc = nil
 for i, v in pairs(game:GetService("Workspace").Shop:GetChildren()) do
 table.insert(npclist,v.Name)
 end
-local drop = drops:Dropdown("Pick", npclist, function(c)
+local drop = drops:Dropdown("Npc", npclist, function(c)
 npc = c
 end)
-drops:Button("Tele", function()
+drops:Button("Teleport", function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Shop[npc].WorldPivot*CFrame.new(0,4,0)
 end)
  local btns = serv:Channel("Mics")   
