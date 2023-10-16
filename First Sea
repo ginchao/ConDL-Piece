@@ -580,7 +580,7 @@ end)
      end)
 local serv = win:Server("Check No Auto", "rbxasset://textures/ui/Chat/MessageCounter.png")
 local drops = serv:Channel("Check No Fix")
- for i, c in pairs(game.Players:GetChildren()) do   drops:Label("Level."..""..c.Data.Levels.Value.." ["..c.Name.."] HP:["..c.Character.Humanoid.Health.."]")
+ for i, c in pairs(game.Players:GetChildren()) do   drops:Label("Level."..""..c.Data.Levels.Value.." ["..c.Name.."] HP:["..c.Character.Humanoid.Health.."] Race:"..c.Item_Use.Race.Value)
 drops:Label("🍬 Candy:["..c.Data.Candy.Value.."] | 💎Gem:["..c.Data.Gem.Value.."] |💲Beli:["..c.Data.Beli.Value.."]") 
 drops:Label("🟢 F:"..c.Item_Use.Con.Value.." | M:"..c.Item_Use.Melee.Value.." | S:"..c.Item_Use.Sword.Value.." | A:"..c.Item_Use.Accessory.Value.." | R:"..c.Item_Use.Race.Value)
  end
