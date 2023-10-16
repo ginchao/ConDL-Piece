@@ -196,16 +196,16 @@ local drops = serv:Channel("Weapon")
   end)  
 
 drops:Toggle("Auto Attack And Auto Skill",false,function(a)
-getgenv().fas = a
-while fas do wait()
-pcall(function()
-for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-if v:IsA("RemoteEvent") and v.Name == "Fire" then
-v:FireServer()
+getgenv().attack = a
+spawn(function()
+while attack do wait()
+for i, v in pairs(game.Players.LocalPlayer.Character: GetChildren()) do
+if v:IsA("Tool") then
+v.A.Fire:FireServer()
+end
 end
 end
 end)
-end
 end)
  drops:Toggle("Grabtools",false, function(I)  
   getgenv().autograb = I  
