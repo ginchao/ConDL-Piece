@@ -70,6 +70,88 @@ end
 end
 bs = game.RunService.RenderStepped:Connect(boss)
 end)
+local tgls = serv:Channel("Auto Skill")
+tgls:Seperator() 
+ tgls:Toggle("Auto Z",false, function(z) 
+ getgenv().autoskill = z 
+ while autoskill do wait() 
+ pcall(function() 
+ for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do 
+ if v:IsA("Tool") and v:FindFirstChild("Z") then 
+ for i,c in pairs(v.Z:GetChildren()) do 
+ if c:IsA("RemoteEvent") then 
+ c:FireServer() 
+ end 
+ end 
+ end 
+ end 
+ end) 
+ end 
+ end) 
+ tgls:Toggle("Auto X",false, function(z) 
+ getgenv().autoskillx = z 
+ while autoskillx do wait() 
+ pcall(function() 
+ for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do 
+ if v:IsA("Tool") and v:FindFirstChild("Z") then 
+ for i,c in pairs(v.X:GetChildren()) do 
+ if c:IsA("RemoteEvent") then 
+ c:FireServer() 
+ end 
+ end 
+ end 
+ end 
+ end) 
+ end 
+ end) 
+ tgls:Toggle("Auto C",false, function(z) 
+ getgenv().autoskillc = z 
+ while autoskillc do wait() 
+ pcall(function() 
+ for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do 
+ if v:IsA("Tool") and v:FindFirstChild("Z") then 
+ for i,c in pairs(v.C:GetChildren()) do 
+ if c:IsA("RemoteEvent") then 
+ c:FireServer() 
+ end 
+ end 
+ end 
+ end 
+ end) 
+ end 
+ end) 
+ tgls:Toggle("Auto V",false, function(z) 
+ getgenv().autoskillv = z 
+ while autoskillv do wait() 
+ pcall(function() 
+ for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do 
+ if v:IsA("Tool") and v:FindFirstChild("Z") then 
+ for i,c in pairs(v.V:GetChildren()) do 
+ if c:IsA("RemoteEvent") then 
+ c:FireServer() 
+ end 
+ end 
+ end 
+ end 
+ end) 
+ end 
+ end) 
+ tgls:Toggle("Auto F",false, function(z) 
+ getgenv().autoskillf = z 
+ while autoskillf do wait() 
+ pcall(function() 
+ for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do 
+ if v:IsA("Tool") and v:FindFirstChild("Z") then 
+ for i,c in pairs(v.Special:GetChildren()) do 
+ if c:IsA("RemoteEvent") then 
+ c:FireServer() 
+ end 
+ end 
+ end 
+ end 
+ end) 
+ end 
+ end) 
 local drops = serv:Channel("Weapon")
   local Weaponlist = {}  
   local Weapon = nil  
@@ -305,7 +387,7 @@ end)
    sldrs:Button("height 10", function()   
    sldr:Change(10)   
    end)  
-local drops = serv:Channel("IsLand")
+local drops = serv:Channel("IsLand And Npc Shop")
 local islandlist = {}  
   local island = nil  
   for i, v in pairs(game:GetService("Workspace").Island:GetChildren()) do  
@@ -316,6 +398,17 @@ local islandlist = {}
 end)
 drops:Button("Teleport Island",function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Island[island].WorldPivot*CFrame.new(-85.100000,3,0)
+end)
+local npclist = {}
+local npc = nil
+for i, v in pairs(game:GetService("Workspace").Shop:GetChildren()) do
+table.insert(npclist,v.Name)
+end
+local drop = drops:Dropdown("Pick", npclist, function(c)
+npc = c
+end)
+drops:Button("Tele", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Shop[npc].WorldPivot*CFrame.new(0,4,0)
 end)
  local btns = serv:Channel("Mics")   
     btns:Button("WallSky", function()    
