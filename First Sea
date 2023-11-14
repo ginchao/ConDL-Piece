@@ -348,7 +348,7 @@ end)
 drops:Button("Teleport", function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Shop[npc].WorldPivot*CFrame.new(0,4,0)
 end)
- local btns = serv:Channel("Mics")  
+ local btns = serv:Channel("Misc")  
 btns:Textbox("Bug Report", "Type!", true, function(t)
 if t then
 DiscordLib:Notification("Thông Báo","Tin Nhắn Đã Được Gửi.","Ok")
